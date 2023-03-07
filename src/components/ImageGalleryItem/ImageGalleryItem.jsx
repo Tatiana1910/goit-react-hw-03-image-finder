@@ -5,17 +5,17 @@ import { Modal } from '../Modal/Modal';
 
 export class ImageGalleryItem extends Component {
   state = {
-    showModal: false,
+    isModalOpen: false,
   };
 
   toggleModal = () => {
     this.setState(prevState => ({
-      showModal: !prevState.showModal,
+      isModalOpen: !prevState.isModalOpen,
     }));
   };
 
   render() {
-    const { showModal } = this.state;
+    const { isModalOpen, isScrolled } = this.state;
     const {
       image: { webformatURL, largeImageURL, tags },
     } = this.props;
@@ -23,11 +23,12 @@ export class ImageGalleryItem extends Component {
     return (
       <Item>
         <Image onClick={this.toggleModal} src={webformatURL} alt={tags} />
-        {showModal && (
+        {isModalOpen && (
           <Modal
             largeImageURL={largeImageURL}
             tags={tags}
             toggleModal={this.toggleModal}
+            isScrolled={isScrolled}
           />
         )}
       </Item>

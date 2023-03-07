@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 import { Overlay, ModalWindow } from './Modal.styled';
-
+import PropTypes from 'prop-types';
 let scrollPosition = 0;
 
 export class Modal extends Component {
@@ -56,3 +56,9 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  largeImageURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+};
