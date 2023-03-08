@@ -104,9 +104,7 @@ export class ImageGallery extends Component {
             })}
           </Gallery>
         )}
-
         {isMore && <Button onClick={handleCilck} />}
-
         <ToastContainer autoClose={2000} />
       </>
     );
