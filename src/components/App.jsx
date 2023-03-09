@@ -5,7 +5,6 @@ import 'modern-normalize';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { GlobalStyle } from './GlobalStyles';
-import { StyledApp } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -27,7 +26,7 @@ export class App extends Component {
   render() {
     const { query, page } = this.state;
     return (
-      <StyledApp>
+      <div>
         <Searchbar onSubmit={this.handleSubmit} />
         <ImageGallery
           query={query}
@@ -35,7 +34,7 @@ export class App extends Component {
           handleCilck={this.handleCilck}
         />
         <GlobalStyle />
-      </StyledApp>
+      </div>
     );
   }
 }
