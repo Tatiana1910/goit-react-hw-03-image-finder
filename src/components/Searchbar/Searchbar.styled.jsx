@@ -14,6 +14,7 @@ export const SearchHeader = styled.header`
   padding-left: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
+  margin-bottom: 16px;
   color: #fff;
   background-color: #3f51b5;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
@@ -35,8 +36,6 @@ export const SearchBtn = styled.button`
   width: 48px;
   height: 48px;
   border: 0;
-  background-color: transparent;
-  background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;
@@ -44,7 +43,6 @@ export const SearchBtn = styled.button`
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
-
   :hover {
     opacity: 1;
   }

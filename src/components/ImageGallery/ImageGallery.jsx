@@ -28,6 +28,7 @@ export class ImageGallery extends Component {
     if (prevProps.query !== query || prevProps.page !== page) {
       this.setState({
         isLoading: true,
+        isMore: false,
       });
 
       try {
