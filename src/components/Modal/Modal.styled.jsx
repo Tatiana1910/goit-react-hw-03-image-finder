@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Overlay = styled.div`
+export const OverlayStyled = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -13,12 +13,8 @@ export const Overlay = styled.div`
   z-index: 1200;
 `;
 
-export const ModalWindow = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
+export const ModalStyled = styled.div`
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
+  background-color: #fff;
 `;
