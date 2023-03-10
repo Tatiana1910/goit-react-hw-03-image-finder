@@ -1,64 +1,39 @@
-import { Component } from 'react';
-
 import { Overlay, ModalWindow } from './Modal.styled';
+import { createPortal } from 'react-dom';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-let scrollPosition = 0;
+
+const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-    this.disableScroll();
+    window.addEventListener('keydown', this.handleKey);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
-    this.enableScroll();
+    window.removeEventListener('keydown', this.handleKey);
   }
 
-  handleKeyDown = e => {
+  handleKey = e => {
     if (e.code === 'Escape') {
-      this.props.toggleModal();
+      this.props.onShow();
     }
   };
 
   handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      this.props.toggleModal();
-    }
-  };
-
-  enableScroll = () => {
-    document.body.style.cssText = '';
-    window.scroll({ top: scrollPosition });
-    document.documentElement.style.scrollBehavior = '';
-  };
-
-  disableScroll = () => {
-    scrollPosition = window.scrollY;
-    document.body.style.cssText = `
-      position: fixed;
-      top: -${scrollPosition}px;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      padding-right: ${window.innerWidth - document.body.offsetWidth}px
-    `;
-    document.documentElement.style.scrollBehavior = 'unset';
+    if (e.target === e.currentTarget) this.props.onShow();
   };
 
   render() {
-    const { largeImageURL, tags } = this.props;
-
-    return (
+    return createPortal(
       <Overlay onClick={this.handleBackdropClick}>
-        <ModalWindow src={largeImageURL} alt={tags} />
-      </Overlay>
+        <ModalWindow>{this.props.children}</ModalWindow>
+      </Overlay>,
+      modalRoot
     );
   }
 }
 
 Modal.propTypes = {
-  largeImageURL: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  children: PropTypes.object.isRequired,
 };
